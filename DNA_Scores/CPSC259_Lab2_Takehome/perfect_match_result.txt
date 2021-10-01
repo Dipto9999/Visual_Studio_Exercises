@@ -1,3 +1,0 @@
-This is the result you should observe with the perfect_match.txt file:
-
-Candidate number 1 is a perfect match
