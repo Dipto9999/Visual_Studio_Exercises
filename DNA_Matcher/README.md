@@ -3,8 +3,8 @@
 ## Contents
 
 * [Overview](#Overview)
-* [Text Files](#Text-Files)
-* [Menu](#Menu)
+	* [Text Files](#Text-Files)
+	* [Menu](#Menu)
 * [Program Actions](#Program-Actions)
 	* [Load File](#Load-File)
 	* [DNA Scores](#DNA-Scores)
@@ -26,9 +26,9 @@ The formatted DNA sequence file can be chosen from the following.
 * [(`long_sample.txt`)](CPSC259_Lab2_Takehome/long_sample.txt)
 * [(`perfect_match.txt`)](CPSC259_Lab2_Takehome/perfect_match.txt)
 
-There are also corresponding results contained in a <i>.txt</i> file of name format [`(x_result)`] where <i>x</i> is the name of the formatted DNA sequence file.
+There are also corresponding results contained in a <i>.txt</i> file of name format <i>x_result.txt</i> where <i>x</i> is the name of the formatted DNA sequence file.
 
-## Menu
+### Menu
 
 The program menu is implemented in the [(`main.c`)](CPSC259_Lab2_Takehome/main.c) source file. An infinite loop in the `int main();` function is used to prompt the user for the next program action.
 
@@ -53,7 +53,7 @@ We dynamically allocate memory for the DNA sequences :</br>
 	<li><i>char**</i> pointer to reference multiple candidate segments</li>
 </ul>
 
-The file is iterated to copy the contents to the respective memory location. This is done through extensive memory reallocation in the `int extract_dna(...);` function, which is implemented in the [(`dna.c`)](CPSC259_Lab2_Takehome/dna.c) source file.
+The file is iterated to copy the contents to the respective memory location. This is done through extensive memory reallocation in the </br>`int extract_dna(...);` function, which is implemented in the [(`dna.c`)](CPSC259_Lab2_Takehome/dna.c) source file.
 
 We must deallocate this memory and dereference the pointers when the user wishes to open a new <i>.txt</i> file.
 
@@ -77,9 +77,9 @@ Given :</br>
 We Calculate Shift Scores For:</br>
 
 <ol>
-	<li>Effective Candidate Sequence: "CTCAAAGGGTAT"</li>
-	<li>Effective Candidate Sequence : "AAAGGGTAT"</li>
-	<li>Effective Candidate Sequence : "GGGTAT"</li>
+	<li>Effective Candidate Sequence: <i>"CTCAAAGGGTAT"</i></li>
+	<li>Effective Candidate Sequence : <i>"AAAGGGTAT"</i></li>
+	<li>Effective Candidate Sequence : <i>"GGGTAT"</i></li>
 </ol>
 
 Shift scores are calculated until the effective candidate sequence contains the same number of codons as the sample sequence.
@@ -119,7 +119,7 @@ We must run our tests in the <b>Test Explorer</b> window of <b>Visual Studio 201
 
 This requires us to include the **C++** unit tests in a <b>Native Unit Test Project</b>.
 
-We add a <b>Reference</b> from the [(`CPSC259_Lab2_UnitTests`)](CPSC259_Lab2_UnitTests/CPSC259_Lab2_UnitTests.vcxproj) project to the
+We added a <b>Reference</b> from the [(`CPSC259_Lab2_UnitTests`)](CPSC259_Lab2_UnitTests/CPSC259_Lab2_UnitTests.vcxproj) project to the
 [(`CPSC259_Lab2_TakeHome`)](CPSC259_Lab2_TakeHome/CPSC259_Lab2_TakeHome.vcxproj) project.
 
 <b>Configuration Properties</b> in the <b>VS Solution Explorer</b> :

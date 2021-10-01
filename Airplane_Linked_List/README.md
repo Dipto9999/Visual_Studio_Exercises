@@ -61,7 +61,7 @@ The linked list functionality includes :</br>
 
 ## Unit Test
 
-Our `main()` function is left unimplemented. We test the framework through various test cases implemented in the [(`unittest.cpp`)](CPSC259_Lab3_UnitTests/unittest.cpp) file.
+Our `int main(void);` function is left unimplemented. We test the framework through various test cases implemented in the [(`unittest.cpp`)](CPSC259_Lab3_UnitTests/unittest.cpp) file.
 
 We run all tests on the different functions implemented in the [(`linkedlist.c`)](CPSC259_Lab3_Framework/linkedlist.c) source file. The development of these test cases was a time extensive process, in which edge case coverage was prioritized.
 
@@ -88,7 +88,7 @@ We must run our tests in the <b>Test Explorer</b> window of <b>Visual Studio 201
 
 This requires us to include the **C++** unit tests in a <b>Native Unit Test Project</b>.
 
-We add a <b>Reference</b> from the [(`CPSC259_Lab3_UnitTests`)](CPSC259_Lab3_UnitTests/CPSC259_Lab3_UnitTests.vcxproj) project to the
+We added a <b>Reference</b> from the [(`CPSC259_Lab3_UnitTests`)](CPSC259_Lab3_UnitTests/CPSC259_Lab3_UnitTests.vcxproj) project to the
 [(`CPSC259_Lab3_Framework`)](CPSC259_Lab3_Framework/CPSC259_Lab3_Framework.vcxproj) project.
 
 <b>Configuration Properties</b> in the <b>VS Solution Explorer</b> :
