@@ -102,7 +102,7 @@ The sum of the codon scores is equal to the DNA score for the effective candidat
 
 ## Unit Test
 
-We also test the scoring functionalities through various test cases implemented in the [unittest.cpp](CPSC259_Lab2_UnitTests/unittest.cpp) file.
+We also test the scoring functionalities through various test cases implemented in the [(`unittest.cpp`)](CPSC259_Lab2_UnitTests/unittest.cpp) file.
 
 We run all tests on the different functions implemented in the [(`dna.c`)](CPSC259_Lab2_Framework/dna.c) source file. The development of these test cases was a time extensive process, in which edge case coverage was prioritized.
 

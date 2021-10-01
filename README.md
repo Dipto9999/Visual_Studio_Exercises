@@ -3,12 +3,18 @@
 ## Contents
 
 * [Overview](#Overview)
+    * [Exercises](#Exercises)
 * [Modifications](#Modifications)
 * [Policy](#Policy)
 
 ## Overview
 
 This repository contains solutions to **C** programming exercises in the **Visual Studio 2019 IDE**.
+
+### Exercises
+
+* [DNA Matcher](DNA_Matcher)
+* [Airplane Linked List](Airplane_Linked_List)
 
 ## Modifications
 

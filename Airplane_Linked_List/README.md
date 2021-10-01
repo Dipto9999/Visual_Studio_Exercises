@@ -61,7 +61,7 @@ The linked list functionality includes :</br>
 
 ## Unit Test
 
-Our `main()` function is left unimplemented. We test the framework through various test cases implemented in the [unittest.cpp](CPSC259_Lab3_UnitTests/unittest.cpp) file.
+Our `main()` function is left unimplemented. We test the framework through various test cases implemented in the [(`unittest.cpp`)](CPSC259_Lab3_UnitTests/unittest.cpp) file.
 
 We run all tests on the different functions implemented in the [(`linkedlist.c`)](CPSC259_Lab3_Framework/linkedlist.c) source file. The development of these test cases was a time extensive process, in which edge case coverage was prioritized.
 
