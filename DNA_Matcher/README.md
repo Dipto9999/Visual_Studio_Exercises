@@ -119,7 +119,7 @@ We must run our tests in the <b>Test Explorer</b> window of <b>Visual Studio 201
 
 This requires us to include the **C++** unit tests in a <b>Native Unit Test Project</b>.
 
-We add a <b>Reference</b> from the [(`CPSC259_Lab2_TakeHomeUnitTests`)](CPSC259_Lab2_TakeHomeUnitTests/CPSC259_Lab2_TakeHomeUnitTests.vcxproj) project to the
+We add a <b>Reference</b> from the [(`CPSC259_Lab2_UnitTests`)](CPSC259_Lab2_UnitTests/CPSC259_Lab2_UnitTests.vcxproj) project to the
 [(`CPSC259_Lab2_TakeHome`)](CPSC259_Lab2_TakeHome/CPSC259_Lab2_TakeHome.vcxproj) project.
 
 <b>Configuration Properties</b> in the <b>VS Solution Explorer</b> :
