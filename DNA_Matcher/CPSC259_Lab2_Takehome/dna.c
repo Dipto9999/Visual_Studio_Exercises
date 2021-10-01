@@ -91,7 +91,7 @@ int extract_dna(FILE* file_pointer, char** sample_segment, char*** candidate_seg
   int  sequence_length = 0;
   int  number_of_candidates = 0;
   char character = ' ';
-  char line_buffer[BUFSIZE];
+  char line_buffer[BUFFSIZE];
 
   /* Moves To The Beginning of the File. */
   fseek(file_pointer, 0, SEEK_SET);
@@ -100,7 +100,7 @@ int extract_dna(FILE* file_pointer, char** sample_segment, char*** candidate_seg
   while ((character = fgetc(file_pointer)) != '\n') { ; }
 
   /* Acquires Sample Sequence (We Know It's In The Second Line). */
-  while (new_line == 0 && fgets(line_buffer, BUFSIZE, file_pointer)) {
+  while (new_line == 0 && fgets(line_buffer, BUFFSIZE, file_pointer)) {
     /* Check If The Line Ends With a Newline Character and Increments the Sample Length. */
     if (line_buffer[strlen(line_buffer) - 1] == '\n') {
       new_line = 1;
@@ -124,7 +124,7 @@ int extract_dna(FILE* file_pointer, char** sample_segment, char*** candidate_seg
   *(*sample_segment + sequence_length) = '\0';
 
   /* Acquires Number of Candidate Sequences (From the Third Line of the File). */
-  fgets(line_buffer, BUFSIZE, file_pointer);
+  fgets(line_buffer, BUFFSIZE, file_pointer);
   return_value = sscanf_s(line_buffer, "%d", &number_of_candidates);
 
   /* Allocates Pointers for Correct Number of Candidate Sequences. */
@@ -140,7 +140,7 @@ int extract_dna(FILE* file_pointer, char** sample_segment, char*** candidate_seg
     while ((character = fgetc(file_pointer)) != '\n') { ; }
 
     /* Acquires Candidate Sequence. */
-    while (new_line == 0 && fgets(line_buffer, BUFSIZE, file_pointer)) {
+    while (new_line == 0 && fgets(line_buffer, BUFFSIZE, file_pointer)) {
       /* Check If the Line Ends With a Newline Character and Sets Length. */
       if (line_buffer[strlen(line_buffer) - 1] == '\n') {
         new_line = 1;
@@ -195,7 +195,8 @@ int extract_dna(FILE* file_pointer, char** sample_segment, char*** candidate_seg
  * RETURN: VOID
  */
 void analyze_segments(char* sample_segment, char** candidate_segments, int number_of_candidates) {
-  /* Variables */
+  /* Local Variables */
+
   char* current_candidate = *candidate_segments;
 
   int sample_length = 0;
@@ -204,6 +205,8 @@ void analyze_segments(char* sample_segment, char** candidate_segments, int numbe
   int perfect_matches = 0;
 
   int current_score = MINIMUM_SCORE;
+
+  fprintf(stdout, "\n");
 
   for (int i = 0; i < number_of_candidates; ++i) {
     current_candidate = *(candidate_segments + i);
@@ -215,7 +218,7 @@ void analyze_segments(char* sample_segment, char** candidate_segments, int numbe
     /* Check to See If Any Candidate Segment(s) Are a Perfect Match, and Report Them
      (REMEMBER: Don't Ignore trailing Nucleotides When Searching For a Perfect Score). */
 	  if (strcmp(sample_segment, current_candidate) == STRINGS_EQUAL) {
-		  printf("Candidate number %d is a perfect match\n", i + 1);
+		  fprintf(stdout, "Candidate Number %d is a Perfect Match.\n", i + 1);
 			perfect_matches++;
 	  }
   }
@@ -228,9 +231,10 @@ void analyze_segments(char* sample_segment, char** candidate_segments, int numbe
       current_candidate = *(candidate_segments + i);
       current_score = calculate_score(sample_segment, current_candidate);
 
-      printf("Candidate number %d matched with a best score of %d\n", i + 1, current_score);
+      fprintf(stdout, "Candidate Number %d Matched With a Best Score of %d.\n", i + 1, current_score);
     }
   }
+  fprintf(stdout, "\n");
 
   /* End of Function. */
   return;

@@ -51,7 +51,7 @@ int main(void) {
         if (sample_segment != NULL) analyze_segments(sample_segment, candidate_segments, number_of_candidates);
         break;
 
-      /* If the User Chooses 3, We Want to Free Dynamically Allocated Memory, and End the Program. */
+      /* We Want to Free Dynamically Allocated Memory, and End the Program. */
       case EXIT_PROGRAM:
         clear_memory(&sample_segment, &candidate_segments, &number_of_candidates);
         end_program(FALSE);
@@ -85,29 +85,29 @@ int main(void) {
 int get_menu_choice(char* menu_name, char menu_choices[][MAX_MENU_ITEM_SIZE], int number_of_choices) {
   /* Local Variables */
 
-  char line[BUFSIZE];
-  char extra[BUFSIZE];
+  char line_buff[BUFFSIZE];
+  char extra[BUFFSIZE];
 
   int i, menu_item;
 
   do {
     // Print Menu Options.
-    printf("%s\n", menu_name);
-    for (i = 0; i < number_of_choices; ++i) printf("%s\n", menu_choices[i]);
-    printf("> ");
+    fprintf(stdout, "%s\n", menu_name);
+    for (i = 0; i < number_of_choices; ++i) fprintf(stdout, "%s\n", menu_choices[i]);
+    fprintf(stdout, ">> ");
 
     /* If user enters EOF which is Control-C in Windows, then fgets returns a null pointer which is
        interpreted as 0.  The user probably wants to quit the program, so we clear the error in
-       standard input and return the final menu item (quit, #3). */
-    if (!(fgets(line, BUFSIZE, stdin))) {
+       standard input and return the final menu item. */
+    if (!(fgets(line_buff, BUFFSIZE, stdin))) {
       clearerr(stdin);
       return number_of_choices;
     }
 
   } while
-    ((sscanf_s(line, "%d%s", &menu_item, extra, BUFSIZE) != 1)
-    || (menu_item < 0) || (menu_item > number_of_choices));
-  /* Disallows Incorrect Menu Choices by Accepting [0, #ofchoices] and Ignoring Other Input. */
+    ((sscanf_s(line_buff, "%d%s", &menu_item, extra, BUFFSIZE) != 1)
+    || (menu_item < FALSE) || (menu_item > number_of_choices));
+  /* Disallows Incorrect Menu Choices by Accepting [FALSE, number_of_choices] and Ignoring Other Input. */
 
   return menu_item;
 }
@@ -123,19 +123,21 @@ int get_menu_choice(char* menu_name, char menu_choices[][MAX_MENU_ITEM_SIZE], in
  * RETURN: VOID
  */
 void clear_memory(char** sample_segment, char*** candidate_segments, int* number_of_candidates) {
-  int i = 0;
+  int i = FALSE;
 
   if (*sample_segment != NULL) {
     free(*sample_segment);
     *sample_segment = NULL;
   }
 
+  /* Free Triple Pointers. */
   if (*candidate_segments != NULL) {
-    for (i = 0; i < *number_of_candidates; ++i) free(*(*candidate_segments + i)); /* Freeing Triple Pointers Can Be Tricky! */
+    for (i = 0; i < *number_of_candidates; ++i) free(*(*candidate_segments + i));
     free(*candidate_segments);
     *candidate_segments = NULL;
 
-    *number_of_candidates = 0; /* Reset The Candidate Counter! */
+    /* Reset The Candidate Counter. */
+    *number_of_candidates = FALSE;
   }
 }
 
@@ -151,32 +153,33 @@ void clear_memory(char** sample_segment, char*** candidate_segments, int* number
  */
 int load_file(char** sample_segment, char*** candidate_segments) {
   /* Variables */
-  char   file_name[BUFSIZE];
-  FILE* fp = NULL;
-  int    i = 0;
-  int    error = FALSE;
-  int    number_of_candidates = 0;
+  char   file_name[BUFFSIZE];
+  FILE* file = NULL;
+
+  int i = FALSE;
+  int file_error = FALSE;
+  int number_of_candidates = FALSE;
 
   /* Acquires File Name From User. */
-  get_user_input("\nEnter file name: ", file_name);
+  get_user_input("\nEnter File Name: ", file_name);
 
-  printf("Loading file %s\n", file_name);
+  fprintf(stdout, "Loading File %s ...\n\n", file_name);
 
   /* Opens File. */
-  error = fopen_s(&fp, file_name, "r");
+  file_error = fopen_s(&file, file_name, "r");
 
   /* If the Return Value Specifies That the File Cannot Be Opened,
-     Prints a Suitable Message to Standard Output and Returns 0. */
-  if (error != FALSE) {
-    fprintf(stderr, "File %s cannot be loaded\n", file_name);
-    return 0;
+     Prints a Suitable Message to Standard Output and Returns FALSE. */
+  if (file_error != FALSE) {
+    fprintf(stderr, "File %s Cannot Be Loaded.\n\n", file_name);
+    return FALSE;
   }
 
   /* Extracts Contents of the File, and Determines Number of Candidate Segments. */
-  number_of_candidates = extract_dna(fp, sample_segment, candidate_segments);
+  number_of_candidates = extract_dna(file, sample_segment, candidate_segments);
 
   /* Closes the File and Returns Number of Candidates Extracted From The DNA. */
-  fclose(fp);
+  fclose(file);
 
   return number_of_candidates;
 }
@@ -186,26 +189,28 @@ int load_file(char** sample_segment, char*** candidate_segments) {
  *
  * PARAM: pointer to a null-terminated string representing the message.
  * PARAM: pointer to a buffer where the response will be stored.
- * PRE: response buffer is BUFSIZE characters in size.
+ * PRE: response buffer is BUFFSIZE characters in size.
  * POST: response buffer contains the user response.
  * RETURN: VOID
  */
 void get_user_input(char* message, char* response) {
-  char line[BUFSIZE];
+  char line_buff[BUFFSIZE];
 
   do {
-    printf("%s", message);
+    fprintf(stdout, "%s", message);
 
-    /* If user enters EOF which is Control-C in Windows
-       then fgets returns a null pointer which is
-       interpreted as 0.  We clear the error in
-       standard input and end program. */
-    if (!(fgets(line, BUFSIZE, stdin))) {
+    /*
+     * If user enters EOF which is Control-C in Windows
+     * then fgets returns a null pointer which is
+     * interpreted as 0.  We clear the error in
+     * standard input and end program.
+    */
+    if (!(fgets(line_buff, BUFFSIZE, stdin))) {
       clearerr(stdin);
-      printf("Error acquiring user input\n");
-      end_program(1);
+      fprintf(stdout, "Error Acquiring User Input.\n");
+      end_program(TRUE);
     }
-  } while (sscanf_s(line, "%s", response, BUFSIZE) != 1);
+  } while (sscanf_s(line_buff, "%s", response, BUFFSIZE) != 1);
 
   return;
 }

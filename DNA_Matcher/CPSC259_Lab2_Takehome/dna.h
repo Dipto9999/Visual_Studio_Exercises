@@ -32,7 +32,7 @@
 #define NUMBER_OF_MENU_ITEMS 3
 #define FIRST_MENU_ITEM      1
 #define LAST_MENU_ITEM       3
-#define BUFSIZE            512
+#define BUFFSIZE           512
 #define LINESIZE           512
 #define ASCII_OFFSET        48
 #define CODON_SYMBOL_LENGTH  4

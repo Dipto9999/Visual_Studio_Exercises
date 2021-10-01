@@ -3,72 +3,102 @@
 ## Contents
 
 * [Overview](#Overview)
-    * [Airplane Structure](#Airplane-Structure)
-    * [Linked List](#Linked-List)
-    * [Functions](#Functions)
+* [Text Files](#Text-Files)
+* [Menu](#Menu)
+* [Program Actions](#Program-Actions)
+	* [Load File](#Load-File)
+	* [DNA Scores](#DNA-Scores)
+		* [Shift Scores](#Shift-Scores)
+		* [Codon Scores](#Codon-Scores)
 * [Unit Test](#Unit-Test)
 	* [VS-2019](#Visual-Studio-2019)
 * [Demonstration](#Demonstration)
 
 ## Overview
 
-This repository contains a **C** program which consumes a formatted DNA sequence file to determine which of a group of candidate sequences of nucleotides best matches a specified sample.
+This repository contains a **C** program which opens a <i>.txt</i> file to analyze a list of DNA sequences, by scoring each of them against a DNA sample sequence. The DNA sample must be at most the same length as the DNA sequence.
 
-The formatted DNA sequence file is a `.txt` file. These can be chosen from:
+### Text Files
 
-* [short_sample.txt](CPSC259_Lab2_Takehome/short_sample.txt)
-* [long_sample.txt](CPSC259_Lab2_Takehome/long_sample.txt)
-* [perfect_match.txt](CPSC259_Lab2_Takehome/perfect_match.txt)
+The formatted DNA sequence file can be chosen from the following.
 
-### Application Menu
+* [(`short_sample.txt`)](CPSC259_Lab2_Takehome/short_sample.txt)
+* [(`long_sample.txt`)](CPSC259_Lab2_Takehome/long_sample.txt)
+* [(`perfect_match.txt`)](CPSC259_Lab2_Takehome/perfect_match.txt)
 
-###
+There are also corresponding results contained in a <i>.txt</i> file of name format [`(x_result)`] where <i>x</i> is the name of the formatted DNA sequence file.
 
-### Codon Scoring
+## Menu
 
-We have defined an airplane structure in our [(`linkedlist.h`)](CPSC259_Lab3_Framework/linkedlist.h) header file, as shown below :
+The program menu is implemented in the [(`main.c`)](CPSC259_Lab2_Takehome/main.c) source file. An infinite loop in the `int main();` function is used to prompt the user for the next program action.
 
-```c
-typedef struct airplane {
-	int flight_number;
+## Program Actions
 
-	char* city_origin;
-	char* city_destination;
+The user may choose to :</br>
 
-	int priority;
+<ol>
+	<li>Load a <i>.txt</i> file.</li>
+	<li>Score DNA sequences in <i>.txt</i> file.</li>
+	<li>Exit the <b>C</b> program.</li>
+</ol>
 
-	int maximum_speed_kph;
-	int cruising_altitude;
+The selection is acquired from the standard input terminal.
 
-	int capacity;
-} airplane;
-```
+### Load File
 
-### Linked List
+We dynamically allocate memory for the DNA sequences :</br>
 
-We have defined a linked list of airplane structures, which causes one airplane to point to another. This is coded in our [(`linkedlist.h`)](CPSC259_Lab3_Framework/linkedlist.h) header file, as shown below :
-
-```c
-typedef struct node {
-	airplane plane;
-	struct node* next;
-} node;
-```
-
-### Functions
-
-We have defined functions in our [(`linkedlist.c`)](CPSC259_Lab3_Framework/linkedlist.c) source file to provide read and write access to the airplane linked list and its nodes.
-
-The linked list functionality includes :</br>
 <ul>
-	<li>Creating the linked list.</li>
-	<li>Deleting the linked list.</li>
-	<li>Reversing the linked list.</li>
-	<li>Creating an airplane node.</li>
-	<li>Inserting an airplane node to the linked list.</li>
-	<li>Removing an airplane node from the linked list.</li>
-	<li>Printing the data of an airplane node.</li>
+	<li><i>char*</i> pointer to reference the sample segment</li>
+	<li><i>char**</i> pointer to reference multiple candidate segments</li>
 </ul>
+
+The file is iterated to copy the contents to the respective memory location. This is done through extensive memory reallocation in the `int extract_dna(...);` function, which is implemented in the [(`dna.c`)](CPSC259_Lab2_Takehome/dna.c) source file.
+
+We must deallocate this memory and dereference the pointers when the user wishes to open a new <i>.txt</i> file.
+
+### DNA Scores
+
+We iterate through the candidates and score each of them against the sample sequence, unless a perfect match is found.
+
+The best DNA scores for the candidate sequences are printed to the standard output terminal.
+
+#### Shift Scores
+
+We only consider the best DNA score for each candidate sequence. This is done through shifting the candidate sequence `char*` pointer leftwards by a codon length. We calculate the shift score by comparing the effective candidate sequence against the sample.
+
+Given :</br>
+
+<ul>
+	<li>Sample Sequence : "AAAGGG"</br></li>
+	<li>Candidate Sequence : "CTCAAAGGGTAT"</br></li>
+</ul>
+
+We Calculate Shift Scores For:</br>
+
+<ol>
+	<li>Effective Candidate Sequence: "CTCAAAGGGTAT"</li>
+	<li>Effective Candidate Sequence : "AAAGGGTAT"</li>
+	<li>Effective Candidate Sequence : "GGGTAT"</li>
+</ol>
+
+Shift scores are calculated until the effective candidate sequence contains the same number of codons as the sample sequence.
+
+#### Codon Scores
+
+Codons are sequences composed of 3 nucleotides, such as <i>"CGG"</i>, <i>"ATT"</i>, <i>"GGC"</i>.
+
+The basis of our scoring algorithm is the analysis of codons. Since codons are used to represent amino acids, score points are awarded for certain characteristics.
+
+These include:</br>
+<ul>
+	<li>Base Pair Nucleotides : 1 Point</li>
+	<li>Identical Nucleotides : 2 Points</li>
+	<li>Same Amino Acids : 5 Points</li>
+	<li>Identical Codons : 10 Points</li>
+</ul>
+
+The sum of the codon scores is equal to the DNA score for the effective candidate sequence. This is what we have defined as a shift score.
 
 ## Unit Test
 
@@ -76,7 +106,7 @@ We also test the scoring functionalities through various test cases implemented 
 
 We run all tests on the different functions implemented in the [(`dna.c`)](CPSC259_Lab2_Framework/dna.c) source file. The development of these test cases was a time extensive process, in which edge case coverage was prioritized.
 
-In our **C++** file test methods, we compare the actual DNA scores with the calculated scores with the following statement: </br>
+In our **C++** file test methods, we compare the calculated DNA scores with the actual scores from the <i>.txt</i> files with the following statement: </br>
 `Assert::AreEqual(actual_score, calculated_score);`
 
 ### Visual Studio 2019
@@ -84,19 +114,28 @@ In our **C++** file test methods, we compare the actual DNA scores with the calc
 We must run our tests in the <b>Test Explorer</b> window of <b>Visual Studio 2019</b>. If all tests run as intended, the <b>Test Explorer</b> generates an output as shown below :
 
 <p align="center">
-    <img src="Figures/Unit_Tests.JPG" width="75%" height="75%" title="C++ Unit Tests for Airplane Linked List." >
+    <img src="Figures/Unit_Tests.JPG" width="75%" height="75%" title="C++ Unit Tests for DNA Matcher." >
 </p>
 
 This requires us to include the **C++** unit tests in a <b>Native Unit Test Project</b>.
+
+We add a <b>Reference</b> from the [(`CPSC259_Lab2_TakeHomeUnitTests`)](CPSC259_Lab2_TakeHomeUnitTests/CPSC259_Lab2_TakeHomeUnitTests.vcxproj) project to the
+[(`CPSC259_Lab2_TakeHome`)](CPSC259_Lab2_TakeHome/CPSC259_Lab2_TakeHome.vcxproj) project.
 
 <b>Configuration Properties</b> in the <b>VS Solution Explorer</b> :
 
 <ul>
     <li><b>Configuration Properties->General->Configuration Type</b> :</br> <i>Dynamic Library(.dll)</i></li>
-    <li><b>VC++ Directories->General->Include Directories</b> :</br> <i>$(SolutionDir)\CPSC259_Lab3_Framework;$(IncludePath)</i></li>
-    <li><b>C/C++->General->Additional Include Directories</b> :</br> <i>$(SolutionDir)\CPSC259_Lab3_Framework;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</i></li>
+    <li><b>VC++ Directories->General->Include Directories</b> :</br> <i>$(SolutionDir)\CPSC259_Lab2_Takehome;$(IncludePath)</i></li>
+    <li><b>C/C++->General->Additional Include Directories</b> :</br> <i>$(SolutionDir)\CPSC259_Lab2_Takehome;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</i></li>
     <li><b>C/C++->Preprocessor->Preprocessor Definitions</b> :</br> <i>WIN32;_DEBUG;%(PreprocessorDefinitions)</i></li>
     <li><b>C/C++->Precompiled Headers->Precompiled Header</b> :</br> <i>Not Using Precompiled Headers</i></li>
-    <li><b>Linker->General->Additional Library Directories</b> :</br> <i>$(SolutionDir)\CPSC259_Lab3_Framework\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</i></li>
-    <li><b>Linker->Input->Additional Dependencies</b> :</br> <i>linkedlist.obj;%(AdditionalDependencies)</i></li>
+    <li><b>Linker->General->Additional Library Directories</b> :</br> <i>$(SolutionDir)\CPSC259_Lab3_Takehome\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</i></li>
+    <li><b>Linker->Input->Additional Dependencies</b> :</br> <i>dna.obj;%(AdditionalDependencies)</i></li>
 </ul>
+
+### Demonstration
+
+A video in the [`Demonstrations`](Demonstrations) directory shows the <b>Power Method</b> calculation when running the program on <b>Visual Studio</b>. I have embedded a low resolution compressed version below.
+
+https://user-images.githubusercontent.com/52113009/135669850-cdea2f2d-a0b1-475c-9969-27d526ef226e.mp4
