@@ -16,7 +16,7 @@ This repository contains solutions to **C** programming exercises in the **Visua
 
 * [DNA Analyzer](DNA_Analyzer)
 * [Airplane Linked List](Airplane_Linked_List)
-* [Maze Solver](Maze-Solver)
+* [Maze Solver](Maze_Solver)
 
 ## Modifications
 
