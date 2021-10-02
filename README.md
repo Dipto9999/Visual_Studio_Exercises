@@ -13,7 +13,7 @@ This repository contains solutions to **C** programming exercises in the **Visua
 
 ### Exercises
 
-* [DNA Matcher](DNA_Matcher)
+* [DNA Analyzer](DNA_Analyzer)
 * [Airplane Linked List](Airplane_Linked_List)
 
 ## Modifications
