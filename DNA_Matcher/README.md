@@ -138,4 +138,6 @@ We added a <b>Reference</b> from the [(`CPSC259_Lab2_UnitTests`)](CPSC259_Lab2_U
 
 A video in the [`Demonstrations`](Demonstrations) directory shows the <b>Power Method</b> calculation when running the program on <b>Visual Studio</b>. I have embedded a low resolution compressed version below.
 
-https://user-images.githubusercontent.com/52113009/135669850-cdea2f2d-a0b1-475c-9969-27d526ef226e.mp4
+
+https://user-images.githubusercontent.com/52113009/135697887-fd3978af-ad3b-4cd2-8e92-4ff7584d32d3.mp4
+
