@@ -10,7 +10,7 @@
 	* [DNA Scores](#DNA-Scores)
 		* [Shift Scores](#Shift-Scores)
 		* [Codon Scores](#Codon-Scores)
-* [Unit Test](#Unit-Test)
+* [Unit Tests](#Unit-Tests)
 	* [VS-2019](#Visual-Studio-2019)
 * [Demonstration](#Demonstration)
 
@@ -100,7 +100,7 @@ These include:</br>
 
 The sum of the codon scores is equal to the DNA score for the effective candidate sequence. This is what we have defined as a shift score.
 
-## Unit Test
+## Unit Tests
 
 We also test the scoring functionalities through various test cases implemented in the [(`unittest.cpp`)](CPSC259_Lab2_UnitTests/unittest.cpp) file.
 
@@ -114,7 +114,7 @@ In our **C++** file test methods, we compare the calculated DNA scores with the 
 We must run our tests in the <b>Test Explorer</b> window of <b>Visual Studio 2019</b>. If all tests run as intended, the <b>Test Explorer</b> generates an output as shown below :
 
 <p align="center">
-    <img src="Figures/Unit_Tests.JPG" width="75%" height="75%" title="C++ Unit Tests for DNA Matcher." >
+    <img src="Figures/Unit_Tests.JPG" width="75%" height="75%" title="C++ Unit Tests for DNA Analyzer." >
 </p>
 
 This requires us to include the **C++** unit tests in a <b>Native Unit Test Project</b>.

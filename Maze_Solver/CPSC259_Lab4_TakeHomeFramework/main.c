@@ -36,6 +36,7 @@ int main(void) {
       return FALSE;
     }
     else {
+      fprintf(stdout, "Processing Maze File : %s...\n", file_names[maze_index]);
       process(maze_file);
     }
   }

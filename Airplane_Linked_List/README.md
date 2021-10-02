@@ -6,7 +6,7 @@
     * [Airplane Structure](#Airplane-Structure)
     * [Linked List](#Linked-List)
     * [Functions](#Functions)
-* [Unit Test](#Unit-Test)
+* [Unit Tests](#Unit-Tests)
 	* [VS-2019](#Visual-Studio-2019)
 
 ## Overview
@@ -59,7 +59,7 @@ The linked list functionality includes :</br>
 	<li>Printing the data of an airplane node.</li>
 </ul>
 
-## Unit Test
+## Unit Tests
 
 Our `int main(void);` function is left unimplemented. We test the framework through various test cases implemented in the [(`unittest.cpp`)](CPSC259_Lab3_UnitTests/unittest.cpp) file.
 

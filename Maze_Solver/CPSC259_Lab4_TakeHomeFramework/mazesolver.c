@@ -24,6 +24,8 @@ void process(FILE* maze_file) {
 
   int dimension = 0;
 
+  int row = 0;
+
   char** paths = NULL;
   char best_path[BUFFER];
 
@@ -36,7 +38,7 @@ void process(FILE* maze_file) {
     maze = parse_maze(maze_file, dimension);
   }
   else {
-    fprintf(stderr, "Unable to Parse Maze File: %s\n", maze_file);
+    fprintf(stderr, "Unable to Parse Maze File: %s.\n", maze_file);
     system("pause");
     return;
   }
@@ -51,10 +53,17 @@ void process(FILE* maze_file) {
     "" // Current Path
   );
 
+  // Commented Out -> For Debugging Purposes.
   print_paths(paths, num_paths);
 
-  printf(strcpy(best_path, find_shortest(paths, num_paths, "")));
-  printf(strcpy(best_path, find_cheapest(paths, num_paths, "")));
+  fprintf(stdout, strcpy(best_path, find_shortest(paths, num_paths, "")));
+  fprintf(stdout, strcpy(best_path, find_cheapest(paths, num_paths, "")));
+  fprintf(stdout, "\n\n");
+
+  /* Deallocate Memory for Maze. */
+  for (row = 0; row < dimension; row++) free(maze[row]);
+  free(maze);
+  maze = NULL;
 
   return TRUE;
 }
@@ -280,7 +289,6 @@ char* find_shortest(char** paths, int num_paths, char* current_path) {
   /* Edge Case */
   if (num_paths == 0) return "No Path Found.";
 
-
   if (*current_path == '\0') {
       current_path = calloc(BUFFER, sizeof(char));
       strcpy(current_path, *paths);
@@ -369,12 +377,12 @@ char* find_cheapest(char** paths, int num_paths, char* current_path) {
  * RETURN: VOID
  */
 void print_paths(char** paths, int num_paths) {
-  if (num_paths > 1) printf("\n****** %d Paths Generated*****\n", num_paths);
-  else printf("\n****** %d Path Generated*****\n", num_paths);
+  if (num_paths > 1) fprintf(stdout, "\n******%d Paths Generated*****\n", num_paths);
+  else fprintf(stdout, "\n******%d Path Generated*****\n", num_paths);
 
   for (int path_index = 0; path_index < num_paths; path_index++) {
-	  printf("\n");
-	  printf(*(paths + path_index));
+	  fprintf(stdout, "\n");
+	  fprintf(stdout, *(paths + path_index));
   }
-  printf("\n\n********************\n");
+  fprintf(stdout, "\n\n********************\n");
 }
