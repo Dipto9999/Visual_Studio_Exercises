@@ -125,5 +125,5 @@ We added a <b>Reference</b> from the [(`TakeHomeUnitTests`)](TakeHomeUnitTests/T
 Here is a sample of the output in the <b>Visual Studio 2019 IDE</b> when running the maze solver program.
 
 <p align="center">
-    <img src="Figures/Maze_Solver.JPG" width="75%" height="75%" title="VS2019 Output for Maze Solver." >
+    <img src="Figures/Maze_Solver.JPG" width="40%" height="40%" title="VS2019 Output for Maze Solver." >
 </p>

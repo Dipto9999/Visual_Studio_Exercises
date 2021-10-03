@@ -2,11 +2,11 @@
  * File:         lab1_inlab_exercises.c
  * Purpose:      Exercises for Lab 1
  * Author:       Muntakim Rahman
- * Date:         September 9th 2021
+ * Date:         March 12th 2021
  */
 
 /* Preprocessor Directives */
-#include <stdlib.h> // For System Command
+#include <stdlib.h>
 
 #include "lab1_inlab_exercises.h"
 

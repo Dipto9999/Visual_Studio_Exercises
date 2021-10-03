@@ -1,10 +1,8 @@
 /*
  * File:         tide_analyzer.h
  * Purpose:      Contains Prototypes
- * Author:       Muntakim Rahman and Hao Qi
- * Student #s:   71065221 and 50813344
- * CS Accounts:  y0f2b and d5j2b
- * Date:         September 9th 2019
+ * Author:       Muntakim Rahman
+ * Date:         March 12th 2021
  */
 
 #ifndef TIDE_ANALYZER_H
@@ -12,18 +10,18 @@
 
 /* Preprocessor Directives */
 
-#define NUMBER_OF_READINGS 131072 /* This = 2^17 (hint!). */
-#define NOISE_FILTER 0.01   /* Used to eliminate noise from observation. */
-#define EXPONENT 17 /* Can be used for call to fft. */
-#define LINESIZE 128 /* Maximum line length in data file. */
-#define SAMPLING_FREQUENCY  24 /* Number of tidal readings taken per day. */
-#define MIN_VALUES_PER_LINE 1 /* Min # of integers on each line of data file. */
-#define MAX_VALUES_PER_LINE 5 /* Max # of integers on each line of data file. */
+#define NUMBER_OF_READINGS 131072 /* 131072 = 2^17 */
+#define NOISE_FILTER 0.01   /* Used to Eliminate Noise from Observation. */
+#define EXPONENT 17 /* Used for Call to FFT. */
+#define LINESIZE 128 /* Maximum Line Length in Data File. */
+#define SAMPLING_FREQUENCY  24 /* Number of Tidal Readings Taken Per Day. */
+#define MIN_VALUES_PER_LINE 1 /* Min # of Integers on Each Line of Data File. */
+#define MAX_VALUES_PER_LINE 5 /* Max # of Integers on Each Line of Data File. */
 
 /*
-* If you experience this error upon
-* closing your program, increase the size
-* of the readings array to
+* If you Experience This Error Upon
+* Closing Your Program, Increase the Size
+* of the Readings Array to
 * NUMBER_OF_READINGS + FFT_ALGOR_BUFFER.
 */
 #define FFT_ALGOR_BUFFER 4 /* Prevents Run Time Check Failure #2. */
@@ -36,8 +34,6 @@
 #define TRUE 1
 #define FALSE 0
 #define ERROR -1
-
-#pragma once
 
 /* Function Prototypes */
 

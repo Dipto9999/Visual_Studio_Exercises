@@ -1,19 +1,18 @@
 /*
  * File:         tide_analyzer.c
- * Purpose:      Consumes a semi-formatted tide measurement file and
- * 				 determines if the corresponding tide is once- or
- * 				 twice-daily using a fast discrete Fourier transformation.
- * 				 The tide measurement file is a txt file whose name
- * 				 corresponds to the name defined in the preprocessor
- * 				 directive.  It is a series of NUMBER_OF_READINGS tidal
- * 				 readings (in mm) taken hourly.
- * Author:       Muntakim Rahman and Hao Qi
- * Student #s:   71065221 and 50813344
- * CS Accounts:  y0f2b and d5j2b
- * Date:         September 9th 2019
+ * Purpose:      Consumes a Semi-Formatted Tide Measurement File and
+ * 				 Determines if the Corresponding Tide is Once- or
+ * 				 Twice-Daily Using a Fast Discrete Fourier Transformation.
+ * 				 The Tide Measurement File is a Text File Whose Name
+ * 				 Corresponds to the Name Defined in the Preprocessor
+ * 				 Directive.  It is a Series of NUMBER_OF_READINGS Tidal
+ * 				 Readings (in mm) Taken Hourly.
+ * Author:       Muntakim Rahman
+ * Date:         March 12th 2021
  */
 
-/* Preprocessor Directives */
+/* Include Headers */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -29,35 +28,34 @@
  */
 int main(void) {
 	/* Variables */
-	FILE* file_pointer = NULL; /* A "pointer" to a file */
-	double readings[NUMBER_OF_READINGS + FFT_ALGOR_BUFFER]; /* Copy the data file to this array */
+	FILE* file_pointer = NULL;
 
-	double complex_component[NUMBER_OF_READINGS + FFT_ALGOR_BUFFER]; /* Can be used for the complex results of fft */
+	double readings[NUMBER_OF_READINGS + FFT_ALGOR_BUFFER]; /* Data File Contents. */
+	double complex_component[NUMBER_OF_READINGS + FFT_ALGOR_BUFFER]; /* Complex Results of FFT. */
 	double omega[NUMBER_OF_READINGS]; /* Tidal frequencies */
 
 	initialize_tidal_frequencies(omega, SAMPLING_FREQUENCY, NUMBER_OF_READINGS);
 
 	/*
-	 * Opens the file (a text file, not a binary file) for reading, and not writing,
-	 * by invoking the fopen_s function with the correct parameters.
+	 * Opens the File (a Text File, not a Binary File) for Reading, and Not Writing,
+	 * By Invoking the fopen_s Function With The Correct Parameters.
 	 */
 	fopen_s(&file_pointer, FILE_NAME, "r");
 
-	/* Invokes the process file function, passing the data readings array and the file pointer. */
+	/* Invokes the Process File Function, Passing the Data Readings Array and the File Pointer. */
 	process_file(readings, file_pointer);
 
 	/*
-	 * If the file pointer does not equal
-	 * NULL THEN closes the pointer.
+	 * If the File Pointer Does Not Equal
+	 * NULL THEN Closes the Pointer.
 	 */
 	if (file_pointer != NULL) fclose(file_pointer);
 
 	/*
-	 * Performs the Fourier transformation by passing the data readings, the complex result
-	 * array, and two other parameters to the fft function. Since arrays are pass by reference
-	 * and not pass by value, the function will be able to directly change the values in the
-	 * cells.  Contrast this with the idea of pass by value, where we pass the value of a
-	 * variable and if we change this value, the original variable remains unchanged.
+	 * Performs the Fourier Transformation By Passing the Data Readings, the Complex Result
+	 * Array, and Two Other Parameters to the fft Function. Since Arrays are Passed by Reference
+	 * and Not Passed By Value, the Function Will Be Able to Directly Change the Values in the
+	 * Cells.
 	 */
 	fft(FORWARD_TRANSFORM, EXPONENT, readings, complex_component);
 
@@ -65,8 +63,7 @@ int main(void) {
 
 	analyze_fft(readings, omega, RESULT_FILE_NAME, NUMBER_OF_READINGS);
 
-	/* And that's it. */
-	printf("Analysis Complete, result.txt Created.\n");
+	fprintf(stdout, "\nAnalysis Complete...\nresult.txt Created.\n");
 
 	system("pause");
 	return TRUE;
@@ -87,12 +84,11 @@ int main(void) {
  */
 void initialize_tidal_frequencies(double omega[], int sampling_frequency, int number_of_readings) {
 	/*
-	 * Starts by initializing the elements in the tidal frequency array so that each omega[i] equals
-	 * i * SAMPLING_FREQUENCY / NUMBER_OF_READINGS.  The sampling frequency that we have to use when
-	 * analyzing the discrete Fourier transform *has* to be the one that was used to measure the signal.
-	 * There is only one correct value (in this case it's hourly, so SAMPLING_FREQUENCY = 24). Otherwise
-	 * it will give us the wrong frequencies. Remember we're mixing ints and doubles here, and we want
-	 * the results to be doubles, so you need to do some casting.
+	 * Starts by Initializing the Elements in the Tidal Frequency Array So that Each omega[i] Equals
+	 * i * SAMPLING_FREQUENCY / NUMBER_OF_READINGS.  The Sampling Frequency That We Have to Use When
+	 * Analyzing the Discrete Fourier Transform must Be the One that Was Used to Measure the Signal.
+	 * There is Only One Correct Value (i.e. SAMPLING_FREQUENCY = 24). Otherwise
+	 * It Will Give Us the Wrong Frequencies.
 	 */
 	for (int i = 0; i < number_of_readings; i++) omega[i] = i * ((double)sampling_frequency) / number_of_readings;
 }
@@ -110,20 +106,20 @@ void initialize_tidal_frequencies(double omega[], int sampling_frequency, int nu
  * RETURN:    VOID
 */
 void process_file(double array_to_populate[], FILE* pointer_to_data_file) {
-	/* Variables */
+	/* Local Variables */
 	char line_buffer[LINESIZE];
 
 	int values_per_line = 0;
-	int extracted_integers[MAX_VALUES_PER_LINE];
-
 	int readings_processed = 0;
 
-	/* Copies the file, line by line, to line buffer using fgets in a while loop. */
+	int extracted_integers[MAX_VALUES_PER_LINE];
+
+	/* Copies the File, Line By Line, to Line Buffer Using fgets In a While Loop. */
 	while (fgets(line_buffer, LINESIZE, pointer_to_data_file)) {
 		/*
-		 * Tries to extract MAX_VALUES_PER_LINE ints from the line buffer and assign
-		 * them to local array cells using sscanf_s or equivalent.  Stores the return
-		 * value in a local int.
+		 * Tries to Extract MAX_VALUES_PER_LINE ints From the Line Buffer and Assign
+		 * Them to Local Array Cells Using sscanf_s or Equivalent. Stores the Return
+		 * Value In a Local int.
 		 */
 		values_per_line = sscanf_s(
 			line_buffer, // Output Buffer
@@ -136,18 +132,11 @@ void process_file(double array_to_populate[], FILE* pointer_to_data_file) {
 		);
 
 		/*
-		 * Copies the extracted integers to our data array.  Use a for loop for each
-		 * of the values_per_line cells in the local array, and add the value
-		 * stored in the cell to the end of the array we are populating with data value.
+		 * Copies The Extracted Integers to Our Data Array. Use a For Loop For Each
+		 * Of the values_per_line Cells in the Local Array, and Add the Value
+		 * Stored In the Cell to the End Of The Array We Are Populating With Data Value.
 		 */
-		for (int i = 0; i < values_per_line; i++) {
-			array_to_populate[readings_processed] = extracted_integers[i];
-			/*
-			 * Keep track of what has been processed.  Increment the number of readings processed
-			 * by the number of values successfully extracted from the line in the file.
-			 */
-			readings_processed++;
-		}
+		for (int i = 0; i < values_per_line; i++) array_to_populate[readings_processed++] = extracted_integers[i];
 	}
 
 	/* End of Function. */
@@ -167,20 +156,12 @@ void process_file(double array_to_populate[], FILE* pointer_to_data_file) {
  * RETURN:    VOID
 */
 void transform_readings(double readings[], double complex_components[], int number_of_readings) {
-	/* Variables */
-	double calculation; /* Calculation of (readings[i]^2 + complex_component[i]^2)^(1/2). */
-
 	/*
-	* Since the Microsoft Visual Studio 2012 compiler doesn't support complex
-	* numbers without some tweaking, let's square the real and the complex components,
-	* add them, and take the square root.  Iterate through the elements of the readings
-	* array and change each readings[i] to equal (readings[i]^2 + complex_component[i]^2)^(1/2).
+	* Let's Square the Real and the Complex Components,
+	* Add Them, and Take the Square Root. Iterate Through the Elements of the Readings
+	* Array and Change Each readings[i] to Equal (readings[i]^2 + complex_component[i]^2)^(1/2).
 	*/
-	for (int i = 0; i < number_of_readings; i++) {
-		calculation = sqrt(pow(readings[i],2) + pow(complex_components[i],2));
-
-		readings[i] = calculation;
-	}
+	for (int i = 0; i < number_of_readings; i++) readings[i] = sqrt(pow(readings[i],2) + pow(complex_components[i],2));
 
 	/* End of function. */
 	return;
@@ -197,11 +178,12 @@ void transform_readings(double readings[], double complex_components[], int numb
  * RETURN:    VOID
 */
 void analyze_fft(double transformed_readings[], double omega[], char* fileName, int number_of_readings) {
-	/* Variables */
+	/* Local Variables */
+
 	FILE* file_pointer = NULL;
 
-	double frequency = 0.0; /* Tides occur with this frequency the most... */
-	double amplitude = 0.0; /* ...and that frequency occured this many times. */
+	double frequency = 0.0; /* Most Common Tidal Frequency. */
+	double amplitude = 0.0; /* Number of Times Tidal Frequency Occurs. */
 
 	/*
 	 * Searches through the results for the tidal frequency with the greatest amplitude.
@@ -225,21 +207,16 @@ void analyze_fft(double transformed_readings[], double omega[], char* fileName, 
 
 	printf("Max Frequency = %f\n", frequency);
 	printf("Max Amplitude = %f\n", amplitude);
-	/*
-	 * You can use this for debugging, or (even better) you can set a breakpoint
-	 * on this line, and look at the values of frequency and amplitude using
-	 * the debugger.
-	 */
 
-	/* Creates (opens) a result file using fopen_s. */
+	/* Creates a Text File For the Result. */
 	fopen_s(&file_pointer, fileName, "w");
 
-	/* Writes the result to the file. */
-	fprintf(file_pointer, "Puddlejump tidal frequency: %f per day", frequency);
+	/* Writes the Result to the Text File. */
+	fprintf(file_pointer, "Puddlejump Tidal Frequency: %f Per Day", frequency);
 
-	/* Closes the result file. */
+	/* Closes the Text File for the Result. */
 	if (file_pointer != NULL) fclose(file_pointer);
 
-	/* End of function. */
+	/* End of Function. */
 	return;
 }

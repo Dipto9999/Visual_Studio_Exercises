@@ -4,6 +4,7 @@
 
 * [Overview](#Overview)
     * [Exercises](#Exercises)
+    * [Projects](#Projects)
 * [Modifications](#Modifications)
     * [Unit Tests](#Unit-Tests)
 * [Policy](#Policy)
@@ -12,8 +13,17 @@
 
 This repository contains solutions to **C** programming exercises in the **Visual Studio 2019 IDE**.
 
+### Exercises
+
+* [Prime Numbers](Prime_Numbers)
+* [Strings](Strings)
+* [Pointers](Pointers)
+* [Recursion](Recursion)
+* [QuickSort Pivot](QuickSort_Pivot)
+
 ### Projects
 
+* [Fourier Analysis](Fourier_Analysis)
 * [DNA Analyzer](DNA_Analyzer)
 * [Airplane Linked List](Airplane_Linked_List)
 * [Maze Solver](Maze_Solver)

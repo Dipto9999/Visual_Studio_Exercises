@@ -1,10 +1,8 @@
 /*
  * File:         lab1_inlab_exercises.h
  * Purpose:      Contains Prototypes of Functions
- * Author:       Muntakim Rahman and Hao Qi
- * Student #s:   71065221 and 50813344
- * CS Accounts:  y0f2b and d5j2b
- * Date:         September 9th 2019
+ * Author:       Muntakim Rahman
+ * Date:         March 12th 2021
  */
 
 /* Preprocessor Directives */

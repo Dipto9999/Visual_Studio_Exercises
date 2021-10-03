@@ -23,7 +23,7 @@ void test_output(int draw_number);
  *         THEN 0 ELSE 1
  */
 int main(void) {
-  printf("Testing Output From draw_ramp() Function:\n");
+  printf("Testing Output From draw_ramp() Function:\n\n");
 
   for (int test_index = 1; test_index <= 5; test_index++) test_output(test_index);
 

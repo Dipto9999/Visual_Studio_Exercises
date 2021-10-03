@@ -6,7 +6,7 @@
 	* [Text Files](#Text-Files)
 	* [Menu](#Menu)
 * [Program Actions](#Program-Actions)
-	* [Load File](#Load-File)
+	* [Copy DNA](#Copy-DNA)
 	* [DNA Scores](#DNA-Scores)
 		* [Shift Scores](#Shift-Scores)
 		* [Codon Scores](#Codon-Scores)
@@ -44,7 +44,7 @@ The user may choose to :</br>
 
 The selection is acquired from the standard input terminal.
 
-### Load File
+### Copy DNA
 
 We dynamically allocate memory for the DNA sequences :</br>
 
