@@ -94,11 +94,11 @@ We added a <b>Reference</b> from the [(`CPSC259_Lab3_UnitTests`)](CPSC259_Lab3_U
 <b>Configuration Properties</b> in the <b>VS Solution Explorer</b> :
 
 <ul>
-    <li><b>Configuration Properties->General->Configuration Type</b> :</br> <i>Dynamic Library(.dll)</i></li>
-    <li><b>VC++ Directories->General->Include Directories</b> :</br> <i>$(SolutionDir)&#92;CPSC259_Lab3_Framework;$(IncludePath)</i></li>
-    <li><b>C/C++->General->Additional Include Directories</b> :</br> <i>$(SolutionDir)&#92;CPSC259_Lab3_Framework;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</i></li>
-    <li><b>C/C++->Preprocessor->Preprocessor Definitions</b> :</br> <i>WIN32;_DEBUG;%(PreprocessorDefinitions)</i></li>
-    <li><b>C/C++->Precompiled Headers->Precompiled Header</b> :</br> <i>Not Using Precompiled Headers</i></li>
-    <li><b>Linker->General->Additional Library Directories</b> :</br> <i>$(SolutionDir)&#92;CPSC259_Lab3_Framework&#92;Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</i></li>
-    <li><b>Linker->Input->Additional Dependencies</b> :</br> <i>linkedlist.obj;%(AdditionalDependencies)</i></li>
+    <li><b>Configuration Properties->General->Configuration Type</b> :</br> <font color="green"><i>Dynamic Library(.dll)<i></font></li>
+    <li><b>VC++ Directories->General->Include Directories</b> :</br> <font color="green"><i>$(SolutionDir)&#92;CPSC259_Lab3_Framework;$(IncludePath)<i></font></li>
+    <li><b>C/C++->General->Additional Include Directories</b> :</br> <font color="green"><i>$(SolutionDir)&#92;CPSC259_Lab3_Framework;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)<i></font></li>
+    <li><b>C/C++->Preprocessor->Preprocessor Definitions</b> :</br> <font color="green"><i>WIN32;_DEBUG;%(PreprocessorDefinitions)<i></font></li>
+    <li><b>C/C++->Precompiled Headers->Precompiled Header</b> :</br> <font color="green"><i>Not Using Precompiled Headers<i></font></li>
+    <li><b>Linker->General->Additional Library Directories</b> :</br> <font color="green"><i>$(SolutionDir)&#92;CPSC259_Lab3_Framework&#92;Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)<i></font></li>
+    <li><b>Linker->Input->Additional Dependencies</b> :</br> <font color="green"><i>linkedlist.obj;%(AdditionalDependencies)<i></font></li>
 </ul>
