@@ -1,4 +1,4 @@
-# CPSC 259 Lab Exercises
+# Beyond CPSC 259 : Data Structures & Algorithms
 
 ## Contents
 
