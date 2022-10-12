@@ -15,7 +15,7 @@
 
 ## Overview
 
-This repository contains a **C** program which opens a <i>.txt</i> file to generate the possible paths in a square maze which can be taken to reach the right end.
+This repository contains a **C** program which opens a <em>.txt</em> file to generate the possible paths in a square maze which can be taken to reach the right end.
 
 ### Maze Cell
 
@@ -45,15 +45,15 @@ The number at the end of the filename indicates the number of total paths in the
 We dynamically allocate memory for the maze and the generated paths :</br>
 
 <ul>
-	<li><i>maze_cell*</i> pointer to reference the maze</li>
-	<li><i>char**</i> pointer to reference multiple generated paths</li>
-    <li><i>char*</i> pointer to reference the shortest path</li>
-    <li><i>char*</i> pointer to reference the cheapest path</li>
+	<li><em>maze_cell*</em> pointer to reference the maze</li>
+	<li><em>char**</em> pointer to reference multiple generated paths</li>
+    <li><em>char*</em> pointer to reference the shortest path</li>
+    <li><em>char*</em> pointer to reference the cheapest path</li>
 </ul>
 
 The file is iterated to copy the maze contents to the respective memory location. This is done through extensive memory reallocation in the </br>`maze_cell** parse_maze(...);` function, which is implemented in the [(`mazesolver.c`)](CPSC259_Lab4_TakehomeFramework/mazesolver.c) source file.
 
-We must deallocate this memory and dereference the `maze_cell**` pointers when we wish to open a new <i>.txt</i> file.
+We must deallocate this memory and dereference the `maze_cell**` pointers when we wish to open a new <em>.txt</em> file.
 
 ## Recursion
 
@@ -111,13 +111,13 @@ We added a <b>Reference</b> from the [(`TakeHomeUnitTests`)](TakeHomeUnitTests/T
 <b>Configuration Properties</b> in the <b>VS Solution Explorer</b> :
 
 <ul>
-    <li><b>Configuration Properties->General->Configuration Type</b> :</br> <i>Dynamic Library(.dll)</i></li>
-    <li><b>VC++ Directories->General->Include Directories</b> :</br> <i>$(SolutionDir)&#92;CPSC259_Lab4_TakeHomeFramework;$(IncludePath)</i></li>
-    <li><b>C/C++->General->Additional Include Directories</b> :</br> <i>$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</i></li>
-    <li><b>C/C++->Preprocessor->Preprocessor Definitions</b> :</br> <i>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;%(PreprocessorDefinitions)</i></li>
-    <li><b>C/C++->Precompiled Headers->Precompiled Header</b> :</br> <i>Not Using Precompiled Headers</i></li>
-    <li><b>Linker->General->Additional Library Directories</b> :</br> <i>$(SolutionDir)&#92;CPSC259_Lab4_TakeHomeFramework&#92;Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</i></li>
-    <li><b>Linker->Input->Additional Dependencies</b> :</br> <i>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;mazesolver.obj;%(AdditionalDependencies)</i></li>
+    <li><b>Configuration Properties->General->Configuration Type</b> :</br> <em>Dynamic Library(.dll)</em></li>
+    <li><b>VC++ Directories->General->Include Directories</b> :</br> <em>$(SolutionDir)\CPSC259_Lab4_TakeHomeFramework;$(IncludePath)</em></li>
+    <li><b>C/C++->General->Additional Include Directories</b> :</br> <em>$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</em></li>
+    <li><b>C/C++->Preprocessor->Preprocessor Definitions</b> :</br> <em>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;%(PreprocessorDefinitions)</em></li>
+    <li><b>C/C++->Precompiled Headers->Precompiled Header</b> :</br> <em>Not Using Precompiled Headers</em></li>
+    <li><b>Linker->General->Additional Library Directories</b> :</br> <em>$(SolutionDir)\CPSC259_Lab4_TakeHomeFramework\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</em></li>
+    <li><b>Linker->Input->Additional Dependencies</b> :</br> <em>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;mazesolver.obj;%(AdditionalDependencies)</em></li>
 </ul>
 
 ## Demonstration
