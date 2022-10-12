@@ -126,11 +126,11 @@ We added a <b>Reference</b> from the [(`CPSC259_Lab2_UnitTests`)](CPSC259_Lab2_U
 
 <ul>
     <li><b>Configuration Properties->General->Configuration Type</b> :</br> <i>Dynamic Library(.dll)</i></li>
-    <li><b>VC++ Directories->General->Include Directories</b> :</br> <i>$(SolutionDir)\CPSC259_Lab2_Takehome;$(IncludePath)</i></li>
-    <li><b>C/C++->General->Additional Include Directories</b> :</br> <i>$(SolutionDir)\CPSC259_Lab2_Takehome;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</i></li>
+    <li><b>VC++ Directories->General->Include Directories</b> :</br> <i>$(SolutionDir)&#92;CPSC259_Lab2_Takehome;$(IncludePath)</i></li>
+    <li><b>C/C++->General->Additional Include Directories</b> :</br> <i>$(SolutionDir)&#92;CPSC259_Lab2_Takehome;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</i></li>
     <li><b>C/C++->Preprocessor->Preprocessor Definitions</b> :</br> <i>WIN32;_DEBUG;%(PreprocessorDefinitions)</i></li>
     <li><b>C/C++->Precompiled Headers->Precompiled Header</b> :</br> <i>Not Using Precompiled Headers</i></li>
-    <li><b>Linker->General->Additional Library Directories</b> :</br> <i>$(SolutionDir)\CPSC259_Lab3_Takehome\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</i></li>
+    <li><b>Linker->General->Additional Library Directories</b> :</br> <i>$(SolutionDir)&#92;CPSC259_Lab3_Takehome&#92;Debug;$(VCInstallDir)UnitTest&#92;lib;%(AdditionalLibraryDirectories)</i></li>
     <li><b>Linker->Input->Additional Dependencies</b> :</br> <i>dna.obj;%(AdditionalDependencies)</i></li>
 </ul>
 

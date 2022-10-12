@@ -112,11 +112,11 @@ We added a <b>Reference</b> from the [(`TakeHomeUnitTests`)](TakeHomeUnitTests/T
 
 <ul>
     <li><b>Configuration Properties->General->Configuration Type</b> :</br> <i>Dynamic Library(.dll)</i></li>
-    <li><b>VC++ Directories->General->Include Directories</b> :</br> <i>$(SolutionDir)\CPSC259_Lab4_TakeHomeFramework;$(IncludePath)</i></li>
+    <li><b>VC++ Directories->General->Include Directories</b> :</br> <i>$(SolutionDir)&#92;CPSC259_Lab4_TakeHomeFramework;$(IncludePath)</i></li>
     <li><b>C/C++->General->Additional Include Directories</b> :</br> <i>$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</i></li>
     <li><b>C/C++->Preprocessor->Preprocessor Definitions</b> :</br> <i>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;%(PreprocessorDefinitions)</i></li>
     <li><b>C/C++->Precompiled Headers->Precompiled Header</b> :</br> <i>Not Using Precompiled Headers</i></li>
-    <li><b>Linker->General->Additional Library Directories</b> :</br> <i>$(SolutionDir)\CPSC259_Lab4_TakeHomeFramework\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</i></li>
+    <li><b>Linker->General->Additional Library Directories</b> :</br> <i>$(SolutionDir)&#92;CPSC259_Lab4_TakeHomeFramework&#92;Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</i></li>
     <li><b>Linker->Input->Additional Dependencies</b> :</br> <i>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;mazesolver.obj;%(AdditionalDependencies)</i></li>
 </ul>
 
