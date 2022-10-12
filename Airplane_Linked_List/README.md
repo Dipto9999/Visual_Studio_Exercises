@@ -94,11 +94,11 @@ We added a <b>Reference</b> from the [(`CPSC259_Lab3_UnitTests`)](CPSC259_Lab3_U
 <b>Configuration Properties</b> in the <b>VS Solution Explorer</b> :
 
 <ul>
-    <li><b>Configuration Properties->General->Configuration Type</b> :</br> `Dynamic Library(.dll)`</li>
-    <li><b>VC++ Directories->General->Include Directories</b> :</br> `$(SolutionDir)&#92;CPSC259_Lab3_Framework;$(IncludePath)`</li>
-    <li><b>C/C++->General->Additional Include Directories</b> :</br> `$(SolutionDir)&#92;CPSC259_Lab3_Framework;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)`</li>
-    <li><b>C/C++->Preprocessor->Preprocessor Definitions</b> :</br> `WIN32;_DEBUG;%(PreprocessorDefinitions)`</li>
-    <li><b>C/C++->Precompiled Headers->Precompiled Header</b> :</br> `Not Using Precompiled Headers`</li>
-    <li><b>Linker->General->Additional Library Directories</b> :</br> `$(SolutionDir)&#92;CPSC259_Lab3_Framework&#92;Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)`</li>
-    <li><b>Linker->Input->Additional Dependencies</b> :</br> `linkedlist.obj;%(AdditionalDependencies)`</li>
+    <li><b>Configuration Properties->General->Configuration Type</b> :</br> <em>Dynamic Library(.dll)</em></li>
+    <li><b>VC++ Directories->General->Include Directories</b> :</br> <em>$(SolutionDir)\CPSC259_Lab3_Framework;$(IncludePath)</em></li>
+    <li><b>C/C++->General->Additional Include Directories</b> :</br> <em>$(SolutionDir)\CPSC259_Lab3_Framework;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</em></li>
+    <li><b>C/C++->Preprocessor->Preprocessor Definitions</b> :</br> <em>WIN32;_DEBUG;%(PreprocessorDefinitions)</em></li>
+    <li><b>C/C++->Precompiled Headers->Precompiled Header</b> :</br> <em>Not Using Precompiled Headers</em></li>
+    <li><b>Linker->General->Additional Library Directories</b> :</br> <em>$(SolutionDir)\CPSC259_Lab3_Framework\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</em></li>
+    <li><b>Linker->Input->Additional Dependencies</b> :</br> <em>linkedlist.obj;%(AdditionalDependencies)</em></li>
 </ul>
